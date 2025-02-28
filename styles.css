@@ -34,7 +34,7 @@ body {
     max-width: 450px;
     width: 100%;
     position: relative;
-    z-index: 2;
+    z-index: 2; /* Lower z-index than fire emojis */
     animation: float 5s infinite ease-in-out;
 }
 
@@ -71,27 +71,20 @@ h1 {
 .range {
     height: 100%;
     background: linear-gradient(90deg, #ff6f61, #ff9a9e);
-    width: 75%; /* Fixed at "Need cuddles" range */
+    width: 100%; /* Set to 100% permanently */
     border-radius: 15px;
-    animation: glow 2s infinite alternate, wave 3s infinite ease-in-out;
+    animation: glow 1s infinite alternate; /* Glow effect for overload */
     box-shadow: 0 0 20px rgba(255, 111, 97, 0.6);
 }
 
 @keyframes glow {
     0% {
         opacity: 0.9;
+        box-shadow: 0 0 20px rgba(255, 111, 97, 0.6);
     }
     100% {
         opacity: 1;
-    }
-}
-
-@keyframes wave {
-    0%, 100% {
-        transform: translateX(0);
-    }
-    50% {
-        transform: translateX(5px);
+        box-shadow: 0 0 40px rgba(255, 111, 97, 0.8);
     }
 }
 
@@ -116,29 +109,35 @@ h1 {
 }
 
 #status strong {
-    color: #ff6f61;
-    text-shadow: 0 2px 5px rgba(255, 111, 97, 0.3);
+    color: darkred; /* Change to darkred for overload status */
+    text-shadow: 0 2px 5px rgba(139, 0, 0, 0.3); /* Darker shadow for emphasis */
 }
 
-/* Particle Styles */
-.particle {
+/* Fire Emojis Styles */
+.fire-emojis {
     position: absolute;
-    width: 10px;
-    height: 10px;
-    background: rgba(255, 111, 97, 0.6);
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(255, 111, 97, 0.8);
-    animation: floatParticle 5s infinite ease-in-out;
+    right: -20px; /* Position at the end of the bar */
+    bottom: 0;
+    font-size: 24px; /* Size of the fire emojis */
+    display: block; /* Always visible */
+    z-index: 4; /* Higher z-index to appear above the container */
+    overflow: hidden;
+    width: 60px; /* Width of the fire emojis container */
+    height: 30px; /* Height of the fire emojis container */
 }
 
-@keyframes floatParticle {
+.fire-emojis span {
+    position: absolute;
+    bottom: 0;
+    animation: floatFire 1s infinite ease-in-out;
+}
+
+@keyframes floatFire {
     0%, 100% {
-        transform: translateY(0) scale(1);
-        opacity: 0.6;
+        transform: translateY(0);
     }
     50% {
-        transform: translateY(-20px) scale(1.2);
-        opacity: 1;
+        transform: translateY(-10px);
     }
 }
 
@@ -177,28 +176,39 @@ h1 {
     margin: 0;
 }
 
-/* Pinned Corner Effect */
-.notepad::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    width: 30px;
-    height: 30px;
-    background: #ff6f61; /* Pin color */
-    border-radius: 50%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+/* TV Box Styles */
+.tv-box {
+    position: fixed;
+    bottom: 20px;
+    left: 2%;
+    transform: translateX(-50%);
+    background: #333;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    max-width: 300px;
+    width: 90%;
+    z-index: 9999;
+    animation: float 5s infinite ease-in-out;
+    border: 2px solid #555;
 }
 
-.notepad::after {
-    content: '';
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    width: 20px;
-    height: 20px;
-    background: #fff8e7; /* Match the notepad background */
-    border-radius: 50%;
+.tv-screen {
+    background: #000;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    font-family: 'Caveat', cursive;
+    font-size: 18px;
+    color: #fff;
+    border: 2px solid #555;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.tv-screen p {
+    margin: 0;
+    color: #ff6f61;
+    text-shadow: 0 0 5px rgba(255, 111, 97, 0.8);
 }
 
 /* Media Queries for Mobile Devices */
@@ -238,68 +248,11 @@ h1 {
     .notepad p {
         font-size: 12px;
     }
-}
-.heart {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background: #ff6f61;
-    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 50% 75%, 18% 100%, 0% 38%);
-    animation: floatHeart 5s infinite ease-in-out;
-}
 
-@keyframes floatHeart {
-    0%, 100% {
-        transform: translateY(0) scale(1);
-        opacity: 0.6;
-    }
-    50% {
-        transform: translateY(-20px) scale(1.2);
-        opacity: 1;
-    }
-}
-/* TV Box Styles */
-/* TV Box Styles */
-.tv-box {
-    position: fixed;
-    bottom: 20px; /* Distance from the bottom of the screen */
-    left: 2%; /* Center horizontally */
-    transform: translateX(-50%); /* Center the box precisely */
-    background: #333;
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-    max-width: 300px;
-    width: 90%; /* Responsive width */
-    z-index: 9999; /* Ensure it's on top of everything */
-    animation: float 5s infinite ease-in-out;
-    border: 2px solid #555;
-}
-
-.tv-screen {
-    background: #000;
-    padding: 15px;
-    border-radius: 5px;
-    text-align: center;
-    font-family: 'Caveat', cursive;
-    font-size: 18px;
-    color: #fff;
-    border: 2px solid #555;
-    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2);
-}
-
-.tv-screen p {
-    margin: 0;
-    color: #ff6f61;
-    text-shadow: 0 0 5px rgba(255, 111, 97, 0.8);
-}
-
-/* Media Queries for Mobile Devices */
-@media (max-width: 600px) {
     .tv-box {
-        max-width: 90%; /* Adjusted for mobile */
+        max-width: 90%;
         padding: 8px;
-        bottom: 10px; /* Adjusted for mobile */
+        bottom: 10px;
     }
 
     .tv-screen {
