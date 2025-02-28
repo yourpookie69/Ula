@@ -6,17 +6,27 @@ slider.addEventListener('input', function() {
     const value = this.value;
     range.style.width = `${value}%`;
 
+    let status = "";
+    let color = "";
+
     if (value <= 25) {
-        statusText.textContent = "Current Status: I'm fine for now";
+        status = "I'm fine for now";
+        color = "green"; // Green for "I'm fine for now"
     } else if (value > 25 && value <= 50) {
-        statusText.textContent = "Current Status: Miss you a bit";
+        status = "Miss you a bit";
+        color = "limegreen"; // Lime green for "Miss you a bit"
     } else if (value > 50 && value <= 75) {
-        statusText.textContent = "Current Status: Need cuddles";
+        status = "Need cuddles";
+        color = "orange"; // Orange for "Need cuddles"
     } else {
-        statusText.textContent = "Current Status: Death by no kisses";
+        status = "Death by no kisses";
+        color = "red"; // Red for "Death by no kisses"
     }
+
+    statusText.innerHTML = `Current Status: <strong style="color: ${color};">${status} ꒰(˶• ᴗ •˶)꒱</strong>`;
 });
-// script.js
+
+// Particle and Heart creation code remains the same
 const particlesContainer = document.querySelector('.particles');
 
 function createParticle() {
@@ -33,3 +43,18 @@ function createParticle() {
 }
 
 setInterval(createParticle, 300);
+
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.left = `${Math.random() * 100}%`;
+    heart.style.top = `${Math.random() * 100}%`;
+    heart.style.animationDuration = `${Math.random() * 3 + 2}s`;
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}
+
+setInterval(createHeart, 1000);
