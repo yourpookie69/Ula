@@ -1,61 +1,27 @@
-
-const slider = document.getElementById('slider');
 const range = document.getElementById('range');
 const statusText = document.getElementById('status');
+const fireEmojis = document.getElementById('fire-emojis'); // Get the fire emojis element
 
-slider.addEventListener('input', function() {
-    const value = this.value;
-    range.style.width = `${value}%`;
+// Set the range to 100% permanently
+range.style.width = '100%';
 
-    let status = "";
-    let color = "";
+// Set the status to "OVERLOAD! CATCHING FIRE!" and show the fire emojis
+statusText.innerHTML = `Current Status: <strong style="color: darkred;">I need your kisses :(</strong>`;
+fireEmojis.innerHTML = '🔥🔥🔥'; // Add fire emojis
 
-    if (value <= 25) {
-        status = "I'm fine for now";
-        color = "green"; // Green for "I'm fine for now"
-    } else if (value > 25 && value <= 50) {
-        status = "Miss you a bit";
-        color = "limegreen"; // Lime green for "Miss you a bit"
-    } else if (value > 50 && value <= 75) {
-        status = "Need cuddles";
-        color = "orange"; // Orange for "Need cuddles"
-    } else {
-        status = "Death by no kisses";
-        color = "red"; // Red for "Death by no kisses"
-    }
-
-    statusText.innerHTML = `Current Status: <strong style="color: ${color};">${status} ꒰(˶• ᴗ •˶)꒱</strong>`;
-});
-
-// Particle and Heart creation code remains the same
-const particlesContainer = document.querySelector('.particles');
-
-function createParticle() {
-    const particle = document.createElement('div');
-    particle.className = 'particle';
-    particle.style.left = `${Math.random() * 100}%`;
-    particle.style.top = `${Math.random() * 100}%`;
-    particle.style.animationDuration = `${Math.random() * 3 + 2}s`;
-    particlesContainer.appendChild(particle);
+// Function to create fire emojis with random animation
+function createFireEmojis() {
+    const fire = document.createElement('span');
+    fire.textContent = '🔥';
+    fire.style.position = 'absolute';
+    fire.style.left = `${Math.random() * 20}px`; // Random horizontal position
+    fire.style.animationDuration = `${Math.random() * 1 + 0.5}s`; // Random animation speed
+    fireEmojis.appendChild(fire);
 
     setTimeout(() => {
-        particle.remove();
-    }, 5000);
+        fire.remove();
+    }, 2000); // Remove fire emoji after 2 seconds
 }
 
-setInterval(createParticle, 300);
-
-function createHeart() {
-    const heart = document.createElement('div');
-    heart.className = 'heart';
-    heart.style.left = `${Math.random() * 100}%`;
-    heart.style.top = `${Math.random() * 100}%`;
-    heart.style.animationDuration = `${Math.random() * 3 + 2}s`;
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-        heart.remove();
-    }, 5000);
-}
-
-setInterval(createHeart, 1000);
+// Continuously create fire emojis
+setInterval(createFireEmojis, 300);
