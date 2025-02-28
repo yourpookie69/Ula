@@ -1,3 +1,4 @@
+
 const slider = document.getElementById('slider');
 const range = document.getElementById('range');
 const statusText = document.getElementById('status');
