@@ -6,7 +6,7 @@ const fireEmojis = document.getElementById('fire-emojis'); // Get the fire emoji
 range.style.width = '100%';
 
 // Set the status to "OVERLOAD! CATCHING FIRE!" and show the fire emojis
-statusText.innerHTML = `Current Status: <strong style="color: darkred;">I need your kisses :(</strong>`;
+statusText.innerHTML = `Current Status: <strong style="color: darkred;">Wish i could sleep with you</strong>`;
 fireEmojis.innerHTML = '🔥🔥🔥'; // Add fire emojis
 
 // Function to create fire emojis with random animation
