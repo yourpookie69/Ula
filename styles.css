@@ -19,8 +19,18 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: transparent;
+    background: linear-gradient(135deg, #ff4500, #ff0000, #8b0000); /* Fire gradient */
     z-index: 1;
+    animation: fireBackground 5s infinite ease-in-out;
+}
+
+@keyframes fireBackground {
+    0%, 100% {
+        background: linear-gradient(135deg, #ff4500, #ff0000, #8b0000);
+    }
+    50% {
+        background: linear-gradient(135deg, #ff0000, #ff4500, #8b0000);
+    }
 }
 
 /* Container */
@@ -70,21 +80,21 @@ h1 {
 
 .range {
     height: 100%;
-    background: linear-gradient(90deg, #ff6f61, #ff9a9e);
+    background: linear-gradient(90deg, #ff0000, #ff4500); /* Red to orange gradient */
     width: 100%; /* Set to 100% permanently */
     border-radius: 15px;
     animation: glow 1s infinite alternate; /* Glow effect for overload */
-    box-shadow: 0 0 20px rgba(255, 111, 97, 0.6);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.6); /* Red glow */
 }
 
 @keyframes glow {
     0% {
         opacity: 0.9;
-        box-shadow: 0 0 20px rgba(255, 111, 97, 0.6);
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
     }
     100% {
         opacity: 1;
-        box-shadow: 0 0 40px rgba(255, 111, 97, 0.8);
+        box-shadow: 0 0 40px rgba(255, 0, 0, 0.8);
     }
 }
 
