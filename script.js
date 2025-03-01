@@ -7,7 +7,7 @@ const particles = document.querySelector('.particles');
 range.style.width = '100%';
 
 // Set the status to "OVERLOAD! CATCHING FIRE!" and show the fire emojis
-statusText.innerHTML = `Current Status: <strong style="color: darkred;">OVERLOAD! CATCHING FIRE! 🔥</strong>`;
+statusText.innerHTML = `Current Status: <strong style="color: darkred;">I need you :(</strong>`;
 fireEmojis.innerHTML = '🔥🔥🔥'; // Add fire emojis
 
 // Function to create fire emojis with random animation
