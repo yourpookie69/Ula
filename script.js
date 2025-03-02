@@ -5,4 +5,4 @@ const statusText = document.getElementById('status');
 range.style.width = '25%';
 
 // Set the status to "OVERLOAD! CATCHING FIRE!" (you can change this to something else if you want)
-statusText.innerHTML = `Current Status: <strong style="color: darkred;">Im fine for now</strong>`;
+statusText.innerHTML = `Current Status: <strong style="color: darkred;">Miss you a bit</strong>`;
