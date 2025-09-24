@@ -1,95 +1,95 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Sexy Quizz</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hannah ❄️🐆</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
-    :root{--pink:#ff6fa3;--soft:#fff0f6;--card:#fff;--muted:#666}
-    *{box-sizing:border-box;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
-    body{background:linear-gradient(180deg,#fff6fb 0%, #fff 60%);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
-    .card{background:var(--card);border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,0.08);padding:28px;max-width:440px;width:100%;text-align:center}
-    h1{margin:0 0 6px;font-size:26px;color:#222}
-    p.lead{color:var(--muted);margin:0 0 18px}
-    .question{background:var(--soft);padding:14px;border-radius:12px;margin-bottom:14px}
-    input[type="text"]{width:100%;padding:12px 14px;border-radius:10px;border:1px solid #fde8f2;font-size:16px;outline:none}
-    button{margin-top:10px;padding:10px 16px;border-radius:10px;border:none;background:var(--pink);color:white;font-weight:600;cursor:pointer}
-    .flowers{margin-top:18px;display:none;align-items:center;flex-direction:column}
-    .bouquet{font-size:54px;transform:translateY(20px);opacity:0;transition:all 700ms cubic-bezier(.2,.9,.3,1)}
-    .show .bouquet{transform:translateY(0);opacity:1}
-    .note{margin-top:10px;color:#444}
-    .confetti{position:relative;height:80px;overflow:visible;margin-top:12px}
-    .confetti span{position:absolute;width:10px;height:14px;border-radius:3px;opacity:0;transform:translateY(-10px) rotate(10deg);animation:fall 900ms linear forwards}
-    @keyframes fall{to{transform:translateY(80px) rotate(360deg);opacity:1}}
-    .credit{font-size:12px;color:var(--muted);margin-top:18px}
+    body {
+      background: linear-gradient(to bottom, #fff1f2, #ffffff, #f0f9ff);
+      color: #334155;
+    }
   </style>
 </head>
-<body>
-  <main class="card" id="card">
-    <h1>Hi cutie 🌸</h1>
-    <p class="lead">Can you answer what my favourite show is?</p>
-
-    <div class="question">
-      <label for="answer" style="display:block;text-align:left;font-weight:600;margin-bottom:8px">Question</label>
-      <div style="text-align:left;margin-bottom:6px">What's the favourite show in history?</div>
-      <input id="answer" type="text" placeholder="Type your answer..." autocomplete="off" />
-      <button id="check">Send</button>
+<body class="min-h-screen">
+  <!-- Header and Hero -->
+  <header class="relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?q=80&w=1400&auto=format&fit=crop" 
+           alt="Snow leopard pattern" 
+           class="w-full h-96 object-cover opacity-30 blur">
     </div>
+    <nav class="relative max-w-5xl mx-auto p-6 flex items-center justify-between">
+      <h1 class="flex items-center gap-3 text-2xl font-bold tracking-wide bg-white bg-opacity-60 px-3 py-1 rounded-2xl shadow">
+        Hannah <span class="text-sm text-pink-600">❄️🐆</span>
+      </h1>
+      <ul class="hidden md:flex gap-6 text-sm">
+        <li><a href="#home" class="hover:text-pink-600">Home</a></li>
+        <li><a href="#love-letters" class="hover:text-pink-600">Love Letters</a></li>
+        <li><a href="#gallery" class="hover:text-pink-600">Gallery</a></li>
+        <li><a href="#contact" class="hover:text-pink-600">Contact</a></li>
+      </ul>
+    </nav>
+    <main id="home" class="relative max-w-5xl mx-auto px-6 py-16 flex flex-col md:flex-row items-center gap-8">
+      <div class="md:w-7/12">
+        <h2 class="text-4xl md:text-5xl font-extrabold leading-tight">For Hannah — a little wild, a lot of gentle.</h2>
+        <p class="mt-4 text-lg text-gray-600">
+          This little corner is filled with snow-leopard whispers, petals, and tiny love notes. Scroll through — each page is made with you in mind.
+        </p>
+        <div class="mt-6 flex gap-3">
+          <a href="#love-letters" class="px-5 py-3 rounded-full bg-pink-600 text-white shadow hover:scale-105 transform transition">
+            Read love notes
+          </a>
+          <a href="#gallery" class="px-5 py-3 rounded-full border border-pink-200 bg-white hover:shadow-md transition">
+            See the gallery
+          </a>
+        </div>
+      </div>
+      <div class="md:w-5/12 flex justify-center">
+        <div class="relative w-64 h-64 rounded-3xl overflow-hidden shadow-2xl">
+          <img src="https://images.unsplash.com/photo-1546182990-dffeafbe841d?q=80&w=1200&auto=format&fit=crop" 
+               alt="Snow leopard" 
+               class="w-full h-full object-cover">
+          <div class="absolute -bottom-6 left-4 bg-white bg-opacity-80 rounded-full px-3 py-1 shadow">
+            ❄️ snow leopard
+          </div>
+        </div>
+      </div>
+    </main>
+  </header>
 
-    <div class="flowers" id="flowers">
-      <div class="bouquet" id="bouquet">🌷💐🌹</div>
-      <div class="confetti" id="confetti"></div>
-      <div class="note">Yay! Hannah got flowers she loves Dexter.</div>
+  <!-- Love Letters Section -->
+  <section id="love-letters" class="max-w-4xl mx-auto px-6 py-12">
+    <h3 class="text-2xl font-semibold">Love Letters & Cute Words</h3>
+    <div class="mt-6 grid gap-4 md:grid-cols-2">
+      <div class="p-4 rounded-xl bg-pink-50 shadow">Hannah, your smile is my favorite sunrise.</div>
+      <div class="p-4 rounded-xl bg-pink-50 shadow">You make ordinary days feel like spring.</div>
+      <div class="p-4 rounded-xl bg-pink-50 shadow">Soft as snow, bright as flowers — that's you.</div>
+      <div class="p-4 rounded-xl bg-pink-50 shadow">I love how you laugh at tiny, perfect things.</div>
+      <div class="p-4 rounded-xl bg-pink-50 shadow">Every moment with you is a little miracle.</div>
+      <div class="p-4 rounded-xl bg-pink-50 shadow">You are my cozy corner and wild adventure all at once.</div>
+      <div class="p-4 rounded-xl bg-pink-50 shadow">Snow leopard grace, wild heart, gentle soul.</div>
+      <div class="p-4 rounded-xl bg-pink-50 shadow">If I could, I'd press every flower for you.</div>
+      <div class="p-4 rounded-xl bg-pink-50 shadow">With you, even silence becomes a love song.</div>
+      <div class="p-4 rounded-xl bg-pink-50 shadow">You are my name written in petals.</div>
     </div>
+  </section>
 
-    <div class="credit">Made with ❤️ for Hannah  try answering <strong>Dexter</strong> (not case-sensitive)</div>
-  </main>
+  <!-- Gallery Section -->
+  <section id="gallery" class="max-w-5xl mx-auto px-6 py-12">
+    <h3 class="text-2xl font-semibold">Gallery of Petals & Leopards</h3>
+    <div class="mt-6 grid gap-4 md:grid-cols-3">
+      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1200&auto=format&fit=crop" alt="Flowers" class="rounded-xl shadow">
+      <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?q=80&w=1400&auto=format&fit=crop" alt="Snow Leopard" class="rounded-xl shadow">
+      <img src="https://images.unsplash.com/photo-1546182990-dffeafbe841d?q=80&w=1200&auto=format&fit=crop" alt="Snow Leopard Close" class="rounded-xl shadow">
+    </div>
+  </section>
 
-  <script>
-    const checkBtn = document.getElementById('check');
-    const answerIn = document.getElementById('answer');
-    const flowers = document.getElementById('flowers');
-    const card = document.getElementById('card');
-    const confetti = document.getElementById('confetti');
-
-    function showFlowers(){
-      flowers.style.display = 'flex';
-      setTimeout(()=> card.classList.add('show'), 10);
-      document.getElementById('bouquet').classList.add('pop');
-      confetti.innerHTML = '';
-      const colors = ['#ff6fa3','#ffd166','#9ad3bc','#bde0fe','#cdb4db'];
-      for(let i=0;i<18;i++){
-        const s = document.createElement('span');
-        s.style.left = (Math.random()*90)+'%';
-        s.style.background = colors[Math.floor(Math.random()*colors.length)];
-        s.style.animationDelay = (Math.random()*600)+'ms';
-        s.style.transform = 'translateY(0) rotate('+Math.random()*360+'deg)';
-        confetti.appendChild(s);
-      }
-    }
-
-    checkBtn.addEventListener('click', ()=>{
-      const val = answerIn.value.trim().toLowerCase();
-      if(val === 'dexter'){
-        showFlowers();
-      } else if(val === ''){
-        answerIn.focus();
-        answerIn.style.border = '1px solid #ffb6d5';
-        setTimeout(()=> answerIn.style.border = '1px solid #fde8f2', 900);
-      } else {
-        card.style.animation = 'shake 420ms';
-        setTimeout(()=> card.style.animation = '', 430);
-        answerIn.value = '';
-        answerIn.placeholder = 'Try again!';
-      }
-    });
-
-    answerIn.addEventListener('keydown', (e)=>{ if(e.key === 'Enter') checkBtn.click(); });
-
-    const style = document.createElement('style');
-    style.textContent = `@keyframes shake{20%{transform:translateX(-6px)}60%{transform:translateX(6px)}100%{transform:translateX(0)}}`;
-    document.head.appendChild(style);
-  </script>
+  <!-- Footer -->
+  <footer id="contact" class="bg-pink-50 py-6 text-center">
+    <p>Made with ❄️🐆 and 🌸 for Hannah</p>
+  </footer>
 </body>
 </html>
 
