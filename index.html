@@ -1,44 +1,97 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>How Much I Miss Hannah 💕</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sexy Quizz</title>
+  <style>
+    :root{--pink:#ff6fa3;--soft:#fff0f6;--card:#fff;--muted:#666}
+    *{box-sizing:border-box;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
+    body{background:linear-gradient(180deg,#fff6fb 0%, #fff 60%);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+    .card{background:var(--card);border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,0.08);padding:28px;max-width:440px;width:100%;text-align:center}
+    h1{margin:0 0 6px;font-size:26px;color:#222}
+    p.lead{color:var(--muted);margin:0 0 18px}
+    .question{background:var(--soft);padding:14px;border-radius:12px;margin-bottom:14px}
+    input[type="text"]{width:100%;padding:12px 14px;border-radius:10px;border:1px solid #fde8f2;font-size:16px;outline:none}
+    button{margin-top:10px;padding:10px 16px;border-radius:10px;border:none;background:var(--pink);color:white;font-weight:600;cursor:pointer}
+    .flowers{margin-top:18px;display:none;align-items:center;flex-direction:column}
+    .bouquet{font-size:54px;transform:translateY(20px);opacity:0;transition:all 700ms cubic-bezier(.2,.9,.3,1)}
+    .show .bouquet{transform:translateY(0);opacity:1}
+    .note{margin-top:10px;color:#444}
+    .confetti{position:relative;height:80px;overflow:visible;margin-top:12px}
+    .confetti span{position:absolute;width:10px;height:14px;border-radius:3px;opacity:0;transform:translateY(-10px) rotate(10deg);animation:fall 900ms linear forwards}
+    @keyframes fall{to{transform:translateY(80px) rotate(360deg);opacity:1}}
+    .credit{font-size:12px;color:var(--muted);margin-top:18px}
+  </style>
 </head>
 <body>
-    <!-- Remove the particles div if you want to remove the background fire effect -->
-    <!-- <div class="particles"></div> -->
-    <div class="container">
-        <h1>How Much I Miss Hannah 💕</h1>
-        <div class="meter">
-            <div class="range" id="range"></div>
-            <!-- Remove the fire emojis container -->
-            <!-- <div class="fire-emojis" id="fire-emojis"></div> -->
-        </div>
-        <div class="labels">
-            <span>I'm fine for now</span>
-            <span>Miss you a bit</span>
-            <span>Need cuddles</span>
-            <span>Death by no kisses</span>
-        </div>
-        <p id="status">Current Status: <strong>I'm fine for now ꒰(˶• ᴗ •˶)꒱</strong></p>
-    </div>
-    <div class="notepad">
-        <h2>Fun Fact of the Day!!</h2>
-        <p>Bananas are actually berries, but strawberries aren’t! 🍌🍓</p>
+  <main class="card" id="card">
+    <h1>Hi cutie 🌸</h1>
+    <p class="lead">Can you answer what my favourite show is?</p>
+
+    <div class="question">
+      <label for="answer" style="display:block;text-align:left;font-weight:600;margin-bottom:8px">Question</label>
+      <div style="text-align:left;margin-bottom:6px">What's the favourite show in history?</div>
+      <input id="answer" type="text" placeholder="Type your answer..." autocomplete="off" />
+      <button id="check">Send</button>
     </div>
 
-    <!-- TV-like box -->
-    <div class="tv-box">
-        <div class="tv-screen">
-            <p>I miss u</p>
-        </div>
+    <div class="flowers" id="flowers">
+      <div class="bouquet" id="bouquet">🌷💐🌹</div>
+      <div class="confetti" id="confetti"></div>
+      <div class="note">Yay! Hannah got flowers she loves Dexter.</div>
     </div>
 
-    <script src="script.js"></script>
+    <div class="credit">Made with ❤️ for Hannah  try answering <strong>Dexter</strong> (not case-sensitive)</div>
+  </main>
+
+  <script>
+    const checkBtn = document.getElementById('check');
+    const answerIn = document.getElementById('answer');
+    const flowers = document.getElementById('flowers');
+    const card = document.getElementById('card');
+    const confetti = document.getElementById('confetti');
+
+    function showFlowers(){
+      flowers.style.display = 'flex';
+      setTimeout(()=> card.classList.add('show'), 10);
+      document.getElementById('bouquet').classList.add('pop');
+      confetti.innerHTML = '';
+      const colors = ['#ff6fa3','#ffd166','#9ad3bc','#bde0fe','#cdb4db'];
+      for(let i=0;i<18;i++){
+        const s = document.createElement('span');
+        s.style.left = (Math.random()*90)+'%';
+        s.style.background = colors[Math.floor(Math.random()*colors.length)];
+        s.style.animationDelay = (Math.random()*600)+'ms';
+        s.style.transform = 'translateY(0) rotate('+Math.random()*360+'deg)';
+        confetti.appendChild(s);
+      }
+    }
+
+    checkBtn.addEventListener('click', ()=>{
+      const val = answerIn.value.trim().toLowerCase();
+      if(val === 'dexter'){
+        showFlowers();
+      } else if(val === ''){
+        answerIn.focus();
+        answerIn.style.border = '1px solid #ffb6d5';
+        setTimeout(()=> answerIn.style.border = '1px solid #fde8f2', 900);
+      } else {
+        card.style.animation = 'shake 420ms';
+        setTimeout(()=> card.style.animation = '', 430);
+        answerIn.value = '';
+        answerIn.placeholder = 'Try again!';
+      }
+    });
+
+    answerIn.addEventListener('keydown', (e)=>{ if(e.key === 'Enter') checkBtn.click(); });
+
+    const style = document.createElement('style');
+    style.textContent = `@keyframes shake{20%{transform:translateX(-6px)}60%{transform:translateX(6px)}100%{transform:translateX(0)}}`;
+    document.head.appendChild(style);
+  </script>
 </body>
 </html>
+
 
 
