@@ -69,7 +69,7 @@ h1 {
 
 /* Meter */
 .meter {
-    width: 100%;
+    width: 75%;
     height: 20px;
     background-color: rgba(224, 224, 224, 0.8);
     border-radius: 15px;
@@ -266,3 +266,4 @@ h1 {
         padding: 10px;
     }
 }
+
