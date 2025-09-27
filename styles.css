@@ -3,18 +3,27 @@ body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #ff9a9e, #fad0c4);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     min-height: 100vh;
     margin: 0;
     color: #333;
-    overflow: hidden;
-    position: relative;
-    padding: 20px;
+    overflow-x: hidden;
+    padding: 20px 10px;
     box-sizing: border-box;
 }
 
-/* Container */
+/* Floating animation */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* Main container */
 .container {
     text-align: center;
     background: rgba(255, 255, 255, 0.9);
@@ -24,18 +33,7 @@ body {
     backdrop-filter: blur(15px);
     max-width: 450px;
     width: 100%;
-    position: relative;
-    z-index: 2;
     animation: float 5s infinite ease-in-out;
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
 }
 
 /* Title */
@@ -87,7 +85,6 @@ h1 {
     font-size: 12px;
     color: #555;
     font-weight: 500;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 /* Status Text */
@@ -96,64 +93,46 @@ h1 {
     font-size: 16px;
     color: #333;
     font-weight: 600;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 #status strong {
     color: darkred;
-    text-shadow: 0 2px 5px rgba(139, 0, 0, 0.3);
 }
 
-/* Notepad Styles */
+/* Notepad Box */
 .notepad {
-    position: fixed;
-    top: 20px;
-    right: 20px;
     background: #fff8e7;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    max-width: 200px;
-    width: 100%;
-    z-index: 3;
-    animation: float 5s infinite ease-in-out;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+    max-width: 90%;
+    margin: 15px auto;
     border: 1px solid #e0d8c0;
     font-family: 'Caveat', cursive;
     line-height: 1.6;
     background-image: linear-gradient(to bottom, transparent 95%, #e0d8c0 95%);
     background-size: 100% 24px;
+    animation: float 6s infinite ease-in-out;
 }
 
 .notepad h2 {
     font-size: 18px;
     color: #ff6f61;
     margin-bottom: 10px;
-    text-shadow: 0 2px 5px rgba(255, 111, 97, 0.3);
     border-bottom: 1px solid #e0d8c0;
     padding-bottom: 5px;
 }
 
-.notepad p {
-    font-size: 14px;
-    color: #555;
-    margin: 0;
-}
-
-/* TV Box Styles */
+/* TV Box */
 .tv-box {
-    position: fixed;
-    bottom: 20px;
-    left: 2%;
-    transform: translateX(-50%);
     background: #333;
-    padding: 10px;
+    padding: 12px;
     border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-    max-width: 300px;
-    width: 90%;
-    z-index: 9999;
-    animation: float 5s infinite ease-in-out;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    max-width: 90%;
+    margin: 15px auto;
     border: 2px solid #555;
+    animation: float 5s infinite ease-in-out;
 }
 
 .tv-screen {
@@ -165,7 +144,6 @@ h1 {
     font-size: 18px;
     color: #fff;
     border: 2px solid #555;
-    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
 .tv-screen p {
@@ -174,30 +152,25 @@ h1 {
     text-shadow: 0 0 5px rgba(255, 111, 97, 0.8);
 }
 
-/* Poem Box Styles */
+/* Poem Box */
 .poem-box {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
     background: #fff0f6;
-    padding: 20px;
+    padding: 18px;
     border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    max-width: 260px;
-    width: 100%;
-    z-index: 4;
-    animation: float 6s infinite ease-in-out;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.2);
+    max-width: 90%;
+    margin: 15px auto;
     border: 2px solid #ffb6c1;
     font-family: 'Caveat', cursive;
     line-height: 1.6;
     text-align: center;
+    animation: float 6s infinite ease-in-out;
 }
 
 .poem-box h2 {
     font-size: 18px;
     color: #ff6f91;
     margin-bottom: 10px;
-    text-shadow: 0 2px 6px rgba(255, 111, 145, 0.3);
 }
 
 .poem-box p {
@@ -206,19 +179,10 @@ h1 {
     margin: 0;
 }
 
-/* Media Queries for Mobile Devices */
+/* Responsive tweaks */
 @media (max-width: 600px) {
-    .container {
-        padding: 15px;
-        max-width: 90%;
-    }
-
     h1 {
         font-size: 20px;
-    }
-
-    .meter {
-        height: 15px;
     }
 
     .labels {
@@ -229,39 +193,15 @@ h1 {
         font-size: 14px;
     }
 
-    .notepad {
-        max-width: 150px;
-        padding: 15px;
-        top: 10px;
-        right: 10px;
-    }
-
-    .notepad h2 {
+    .notepad h2, .poem-box h2 {
         font-size: 16px;
     }
 
-    .notepad p {
-        font-size: 12px;
-    }
-
-    .tv-box {
-        max-width: 90%;
-        padding: 8px;
-        bottom: 10px;
-    }
-
-    .tv-screen {
-        font-size: 16px;
-        padding: 10px;
-    }
-
-    .poem-box {
-        max-width: 90%;
-        padding: 15px;
-        bottom: 10px;
-        right: 10px;
+    .notepad p, .poem-box p, .tv-screen {
+        font-size: 14px;
     }
 }
+
 
 
 
