@@ -1,167 +1,43 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Flower Garden 🌸🌼</title>
-<style>
-  :root{
-    --bg1: #f0fbff;
-    --bg2: #fff7fb;
-    --card: rgba(255,255,255,0.6);
-    --glass: rgba(255,255,255,0.5);
-  }
-  *{box-sizing:border-box;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;}
-  html,body{height:100%;margin:0;background:radial-gradient(circle at 10% 10%,var(--bg1),var(--bg2));overflow:hidden}
-  .header{
-    position:fixed;left:0;right:0;top:16px;display:flex;justify-content:center;pointer-events:none;
-  }
-  .title{
-    pointer-events:auto;
-    background:linear-gradient(90deg,rgba(255,255,255,0.85),rgba(255,255,255,0.7));
-    padding:10px 18px;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,0.06);
-    display:flex;gap:12px;align-items:center;font-weight:700;color:#334;
-  }
-  .garden{
-    width:100%;height:100vh;display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
-    gap:18px;padding:90px 36px 36px;
-    align-items:end;
-  }
-  .pot{
-    display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:6px;cursor:pointer;
-    transition:transform .18s ease;
-  }
-  .pot:active{transform:translateY(4px) scale(.99)}
-  .flower{
-    font-size:46px;line-height:1;filter:drop-shadow(0 6px 12px rgba(0,0,0,0.08));
-    transform-origin:center bottom;
-    transition:transform .5s cubic-bezier(.2,.9,.25,1);
-  }
-  .stem{width:8px;height:44px;background:linear-gradient(#2b8f4d,#196b3a);border-radius:8px;margin-top:-6px}
-  .soil{
-    width:68px;height:22px;background:linear-gradient(#6b3b2b,#482417);border-radius:10px 10px 6px 6px;box-shadow:inset 0 -6px 10px rgba(255,255,255,0.06);
-  }
-  .label{font-size:12px;color:#2d3748;opacity:.9}
-  /* floating petals animation */
-  .float{animation:floaty 6s ease-in-out infinite}
-  @keyframes floaty{0%{transform:translateY(0) rotate(0)}50%{transform:translateY(-8px) rotate(6deg)}100%{transform:translateY(0) rotate(0)}}
-  /* bloom effect */
-  .bloom{transform:scale(1.18) rotate(-4deg)}
-  /* full-screen bouquet overlay */
-  .overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at center, rgba(255,255,255,0.0), rgba(0,0,0,0.12));pointer-events:none;opacity:0;transition:opacity .45s}
-  .overlay.show{opacity:1;pointer-events:auto}
-  .big-bouquet{font-size:88px;transform:translateY(20px);opacity:0;transition:all .6s cubic-bezier(.2,.9,.2,1)}
-  .overlay.show .big-bouquet{transform:translateY(0);opacity:1}
-  /* responsive tweaks */
-  @media (max-width:520px){.flower{font-size:36px}.garden{gap:12px;padding:90px 12px 12px}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Much I Miss Hannah 💕</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="header">
-    <div class="title">🌸 Hannah's Flower Garden — click a pot to make it bloom! 🌼</div>
-  </div>
+    <!-- Remove the particles div if you want to remove the background fire effect -->
+    <!-- <div class="particles"></div> -->
+    <div class="container">
+        <h1>How Much I Miss Hannah 💕</h1>
+        <div class="meter">
+            <div class="range" id="range"></div>
+            <!-- Remove the fire emojis container -->
+            <!-- <div class="fire-emojis" id="fire-emojis"></div> -->
+        </div>
+        <div class="labels">
+            <span>I'm fine for now</span>
+            <span>Miss you a bit</span>
+            <span>Need cuddles</span>
+            <span>Death by no kisses</span>
+        </div>
+        <p id="status">Current Status: <strong>I'm fine for now ꒰(˶• ᴗ •˶)꒱</strong></p>
+    </div>
+    <div class="notepad">
+        <h2>Fun Fact of the Day!!</h2>
+        <p>Bananas are actually berries, but strawberries aren’t! 🍌🍓</p>
+    </div>
 
-  <div class="garden" id="garden">
-    <!-- JavaScript will populate pots -->
-  </div>
+    <!-- TV-like box -->
+    <div class="tv-box">
+        <div class="tv-screen">
+            <p>I miss u</p>
+        </div>
+    </div>
 
-  <div class="overlay" id="overlay" aria-hidden="true">
-    <div class="big-bouquet" id="bigBouquet">💐🌷🌹🌻🌺</div>
-  </div>
-
-<script>
-  const garden = document.getElementById('garden');
-  const overlay = document.getElementById('overlay');
-  const bigBouquet = document.getElementById('bigBouquet');
-
-  // Flower emoji palette (variety)
-  const flowers = [
-    '🌸','🌼','🌺','🌻','🌷','💐','🥀','🌹','🌱','🌿','🌾','🌵','🍀'
-  ];
-
-  // Generate a grid full of flower pots
-  const N = 30; // number of pots
-  for(let i=0;i<N;i++){
-    const pot = document.createElement('div');
-    pot.className = 'pot';
-    // choose flower randomly (and sometimes multiple for bouquet)
-    const f = Math.random() < 0.12 ? flowers[Math.floor(Math.random()*flowers.length)] + flowers[Math.floor(Math.random()*flowers.length)] : flowers[Math.floor(Math.random()*flowers.length)];
-    const flowerEl = document.createElement('div');
-    flowerEl.className = 'flower float';
-    flowerEl.textContent = f;
-    // small label
-    const label = document.createElement('div');
-    label.className = 'label';
-    label.textContent = ['Sunny','Sweet','Dewy','Blossom','Petal','Ruby','Gold','Lush'][Math.floor(Math.random()*8)];
-    // stem and soil
-    const stem = document.createElement('div'); stem.className = 'stem';
-    const soil = document.createElement('div'); soil.className = 'soil';
-    pot.appendChild(flowerEl);
-    pot.appendChild(stem);
-    pot.appendChild(soil);
-    pot.appendChild(label);
-
-    // random delay to make floating not synchronized
-    flowerEl.style.animationDelay = (Math.random()*2000)+'ms';
-    garden.appendChild(pot);
-
-    // click to bloom
-    pot.addEventListener('click', ()=>{
-      // bloom animation
-      flowerEl.classList.add('bloom');
-      setTimeout(()=> flowerEl.classList.remove('bloom'), 900);
-
-      // petals scatter effect
-      scatterPetals(pot, flowerEl.textContent);
-
-      // occasionally show big overlay bouquet
-      if(Math.random() < 0.25){
-        overlay.classList.add('show');
-        setTimeout(()=> overlay.classList.remove('show'), 1400);
-      }
-    });
-  }
-
-  function scatterPetals(pot, emoji){
-    // create small floating petals that rise and fade
-    for(let i=0;i<10;i++){
-      const p = document.createElement('div');
-      p.textContent = emoji.length > 2 ? emoji[0] : emoji; // pick an emoji char
-      p.style.position = 'absolute';
-      const rect = pot.getBoundingClientRect();
-      p.style.left = (rect.left + rect.width/2 + (Math.random()*120-60)) + 'px';
-      p.style.top = (rect.top + 10 + (Math.random()*30-20)) + 'px';
-      p.style.fontSize = Math.floor(12 + Math.random()*22) + 'px';
-      p.style.opacity = '1';
-      p.style.transform = 'translateY(0) rotate(0deg)';
-      p.style.transition = 'transform 1100ms cubic-bezier(.2,.8,.25,1), opacity 1100ms linear';
-      document.body.appendChild(p);
-      // force layout then animate
-      requestAnimationFrame(()=>{
-        p.style.transform = 'translateY(-120px) translateX('+ (Math.random()*120-60) +'px) rotate(' + (Math.random()*720-360) + 'deg) scale(' + (0.6+Math.random()*0.9) + ')';
-        p.style.opacity = '0';
-      });
-      setTimeout(()=> p.remove(), 1200);
-    }
-  }
-
-  // keyboard Easter egg: press F to fill entire screen with bouquet
-  window.addEventListener('keydown', (e)=>{
-    if(e.key.toLowerCase() === 'f'){
-      overlay.classList.add('show');
-      setTimeout(()=> overlay.classList.remove('show'), 2000);
-    }
-  });
-
-  // mobile friendly: tap anywhere empty to make random bloom
-  document.body.addEventListener('click', (ev)=>{
-    if(ev.target === document.body || ev.target === garden) {
-      const pots = document.querySelectorAll('.pot');
-      const idx = Math.floor(Math.random()*pots.length);
-      pots[idx].click();
-    }
-  });
-</script>
+    <script src="script.js"></script>
 </body>
 </html>
 
